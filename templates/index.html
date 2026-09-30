@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="CodeAnalyzer AI - AI powered code analysis tool"
+    >
+
+    <title>CodeAnalyzer AI</title>
+
+    <!-- Main CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header>
+
+        <div class="header-inner">
+
+
+            <!-- BRAND -->
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    &lt;/&gt;
+                </div>
+
+                <div class="brand-info">
+
+                    <h2>
+                        CodeAnalyzer AI
+                    </h2>
+
+                    <p>
+                        Better Code • Smarter Analysis • Faster Learning
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+
+            <nav class="nav">
+
+                <a
+                    href="#"
+                    class="live"
+                >
+                    Live
+                </a>
+
+                <a href="#features">
+                    Features
+                </a>
+
+                <a href="#docs">
+                    Docs
+                </a>
+
+                <a href="#about">
+                    About
+                </a>
+
+            </nav>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         HERO SECTION
+         ===================================================== -->
+
+    <section class="hero">
+
+
+        <div class="badge">
+
+            <span>●</span>
+
+            AI-Powered • Free to Use • No Signup
+
+        </div>
+
+
+        <h1>
+            Find &amp; Fix Code Bugs Instantly
+        </h1>
+
+
+        <p>
+
+            Paste code, select language, click Analyze —
+            get bugs, security, performance, quality report
+            &amp; improved code in seconds.
+
+        </p>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         MAIN APPLICATION
+         ===================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             OVERALL SCORE
+             ================================================= -->
+
+        <section
+            class="score-panel"
+            id="scorePanel"
+        >
+
+
+            <div class="score-left">
+
+
+                <!-- SCORE CIRCLE -->
+
+                <div class="score-circle">
+
+                    <span id="score">
+                        0
+                    </span>
+
+                </div>
+
+
+                <!-- SCORE INFORMATION -->
+
+                <div class="score-info">
+
+                    <h3 id="grade">
+                        Ready to Analyze
+                    </h3>
+
+                    <p id="summary">
+                        Paste your code and click Analyze Code.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- SCORE COUNTS -->
+
+            <div class="score-counts">
+
+
+                <div class="score-box">
+
+                    <strong id="bugCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Bugs
+                    </span>
+
+                </div>
+
+
+                <div class="score-box">
+
+                    <strong id="securityCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Security
+                    </span>
+
+                </div>
+
+
+                <div class="score-box">
+
+                    <strong id="performanceCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Performance
+                    </span>
+
+                </div>
+
+
+                <div class="score-box">
+
+                    <strong id="qualityCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Quality
+                    </span>
+
+                </div>
+
+
+                <div class="score-box">
+
+                    <strong id="suggestionCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Suggestions
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             CODE EDITOR
+             ================================================= -->
+
+        <section class="code-panel">
+
+
+            <!-- EDITOR TOP -->
+
+            <div class="code-top">
+
+
+                <!-- WINDOW DOTS -->
+
+                <div class="dots">
+
+                    <span class="dot red"></span>
+
+                    <span class="dot yellow"></span>
+
+                    <span class="dot green"></span>
+
+                </div>
+
+
+                <!-- FILE NAME -->
+
+                <div class="file-name">
+                    code.input
+                </div>
+
+
+                <!-- LANGUAGE SELECT -->
+
+                <select
+                    id="languageSelect"
+                    class="language"
+                >
+
+                    <option value="C">
+                        C
+                    </option>
+
+                    <option value="C++">
+                        C++
+                    </option>
+
+                    <option
+                        value="Python"
+                        selected
+                    >
+                        Python
+                    </option>
+
+                    <option value="Java">
+                        Java
+                    </option>
+
+                    <option value="JavaScript">
+                        JavaScript
+                    </option>
+
+                    <option value="Rust">
+                        Rust
+                    </option>
+
+                    <option value="PHP">
+                        PHP
+                    </option>
+
+                    <option value="Ruby">
+                        Ruby
+                    </option>
+
+                    <option value="Swift">
+                        Swift
+                    </option>
+
+                    <option value="Dart">
+                        Dart
+                    </option>
+
+                    <option value="Kotlin">
+                        Kotlin
+                    </option>
+
+                    <option value="SQL">
+                        SQL
+                    </option>
+
+                    <option value="HTML/CSS">
+                        HTML / CSS
+                    </option>
+
+                </select>
+
+
+                <!-- CLEAR -->
+
+                <button
+                    id="clearBtn"
+                    class="clear-btn"
+                    type="button"
+                >
+                    Clear
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =============================================
+                 EDITOR
+                 ============================================= -->
+
+            <div class="editor">
+
+
+                <!-- LINE NUMBERS -->
+
+                <div
+                    id="lineNumbers"
+                    class="line-numbers"
+                    aria-hidden="true"
+                >
+
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>4</div>
+                    <div>5</div>
+                    <div>6</div>
+                    <div>7</div>
+                    <div>8</div>
+                    <div>9</div>
+                    <div>10</div>
+
+                </div>
+
+
+                <!-- CODE INPUT -->
+
+                <textarea
+                    id="codeInput"
+                    spellcheck="false"
+                    placeholder="Paste your code here..."
+                    aria-label="Code input"
+                ></textarea>
+
+
+            </div>
+
+
+
+            <!-- =============================================
+                 EDITOR FOOTER
+                 ============================================= -->
+
+            <div class="editor-footer">
+
+
+                <div class="stats">
+
+                    <span id="lineCount">
+                        0 lines
+                    </span>
+
+                    <span>
+                        •
+                    </span>
+
+                    <span id="charCount">
+                        0 chars
+                    </span>
+
+                </div>
+
+
+                <div class="editor-actions">
+
+
+                    <!-- EXAMPLE -->
+
+                    <button
+                        id="exampleBtn"
+                        class="example-btn"
+                        type="button"
+                    >
+                        Example
+                    </button>
+
+
+                    <!-- ANALYZE -->
+
+                    <button
+                        id="analyzeBtn"
+                        class="analyze-btn"
+                        type="button"
+                    >
+
+                        <span>
+                            ⚡
+                        </span>
+
+                        Analyze Code
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             ANALYSIS PANEL
+             ================================================= -->
+
+        <section class="result-panel">
+
+
+            <!-- =============================================
+                 ANALYSIS TABS
+                 ============================================= -->
+
+            <div class="tabs">
+
+
+                <!-- BUGS -->
+
+                <button
+                    class="tab active"
+                    data-tab="bugs"
+                    type="button"
+                >
+
+                    🐞
+
+                    <span>
+                        Bugs
+                    </span>
+
+                    <span
+                        id="bugTabCount"
+                        class="tab-count"
+                    >
+                        0
+                    </span>
+
+                </button>
+
+
+                <!-- SECURITY -->
+
+                <button
+                    class="tab"
+                    data-tab="security"
+                    type="button"
+                >
+
+                    🔒
+
+                    <span>
+                        Security
+                    </span>
+
+                    <span
+                        id="securityTabCount"
+                        class="tab-count"
+                    >
+                        0
+                    </span>
+
+                </button>
+
+
+                <!-- PERFORMANCE -->
+
+                <button
+                    class="tab"
+                    data-tab="performance"
+                    type="button"
+                >
+
+                    ⚡
+
+                    <span>
+                        Performance
+                    </span>
+
+                    <span
+                        id="performanceTabCount"
+                        class="tab-count"
+                    >
+                        0
+                    </span>
+
+                </button>
+
+
+                <!-- CODE QUALITY -->
+
+                <button
+                    class="tab"
+                    data-tab="quality"
+                    type="button"
+                >
+
+                    📊
+
+                    <span>
+                        Code Quality
+                    </span>
+
+                    <span
+                        id="qualityTabCount"
+                        class="tab-count"
+                    >
+                        0
+                    </span>
+
+                </button>
+
+
+                <!-- SUGGESTIONS -->
+
+                <button
+                    class="tab"
+                    data-tab="suggestions"
+                    type="button"
+                >
+
+                    💡
+
+                    <span>
+                        Suggestions
+                    </span>
+
+                    <span
+                        id="suggestionTabCount"
+                        class="tab-count"
+                    >
+                        0
+                    </span>
+
+                </button>
+
+
+                <!-- IMPROVED CODE -->
+
+                <button
+                    class="tab"
+                    data-tab="improvedCode"
+                    type="button"
+                >
+
+                    ✨
+
+                    <span>
+                        Improved Code
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =============================================
+                 RESULT CONTENT
+                 ============================================= -->
+
+            <div class="result-content">
+
+
+                <!-- =========================================
+                     EMPTY STATE
+                     ========================================= -->
+
+                <div
+                    id="analysisEmpty"
+                    class="empty-state"
+                >
+
+
+                    <div class="search-icon">
+                    </div>
+
+
+                    <h3>
+                        Ready to Analyze
+                    </h3>
+
+
+                    <p>
+
+                        Paste your code on the left,
+                        choose a language, and press
+
+                        <strong>
+                            Analyze Code
+                        </strong>
+
+                        to get your full debugging report.
+
+                    </p>
+
+
+                    <div class="mini-tabs">
+
+                        <span>
+                            🐞 Bugs
+                        </span>
+
+                        <span>
+                            🔒 Security
+                        </span>
+
+                        <span>
+                            ⚡ Performance
+                        </span>
+
+                        <span>
+                            📊 Code Quality
+                        </span>
+
+                        <span>
+                            💡 Suggestions
+                        </span>
+
+                        <span>
+                            ✨ Improved Code
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =========================================
+                     ANALYSIS RESULTS
+                     ========================================= -->
+
+                <div
+                    id="analysisResult"
+                    style="display: none;"
+                >
+
+
+                    <!-- BUGS -->
+
+                    <section
+                        id="bugs"
+                        class="analysis-section"
+                    >
+                    </section>
+
+
+                    <!-- SECURITY -->
+
+                    <section
+                        id="security"
+                        class="analysis-section"
+                    >
+                    </section>
+
+
+                    <!-- PERFORMANCE -->
+
+                    <section
+                        id="performance"
+                        class="analysis-section"
+                    >
+                    </section>
+
+
+                    <!-- CODE QUALITY -->
+
+                    <section
+                        id="quality"
+                        class="analysis-section"
+                    >
+                    </section>
+
+
+                    <!-- SUGGESTIONS -->
+
+                    <section
+                        id="suggestions"
+                        class="analysis-section"
+                    >
+                    </section>
+
+
+                    <!-- IMPROVED CODE -->
+
+                    <section
+                        id="improvedCode"
+                        class="analysis-section"
+                    >
+                    </section>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         TOAST
+         ===================================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+        aria-live="assertive"
+        hidden
+    >
+    </div>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+        CodeAnalyzer AI • React + Flask + AI API
+        • Built for coding students &amp; developers
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+
+
+</body>
+
+</html>
+
